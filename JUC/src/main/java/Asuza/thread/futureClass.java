@@ -15,7 +15,7 @@ class MyCallable implements Callable<Integer>{
     public MyCallable(int max){
         this.max_num = max;
     }
-    @Override
+
     public Integer call() throws Exception {
 //        Thread.sleep(2000);
         return countSum(max_num);
