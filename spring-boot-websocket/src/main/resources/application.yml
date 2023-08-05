@@ -1,0 +1,7 @@
+server:
+  port: 8182
+
+spring:
+  application:
+    name: spring-boot-websocket
+
