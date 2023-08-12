@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 配置文件修改时重新加载，默认true -->
+<configuration scan="true">
+
+    <!--默认是你的启动工程路径-->
+    <!-- 如果使用的是相对路径的话，当部署到tomcat路径下的时候，默认是输出到tomcat的bin目录下。
+     "../logs" 的意思是把日志输出到tomcat的logs目录下 -->
+    <property name="CATALINA_BASE" value="logs"></property>
+
+    <!-- 控制台输出 -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder charset="UTF-8">
+            <!-- 输出日志记录格式 -->
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level  %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 第一个文件输出,每天产生一个文件 -->
+    <!-- RollingFileAppender：滚动记录文件，先将日志记录到指定文件，当符合某个条件时，将日志记录到其他文件。 -->
+    <appender name="FILE1" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- 输出文件路径+文件名 -->
+            <fileNamePattern>${CATALINA_BASE}/spring-boot-websocket.%d{yyyyMMdd}.log</fileNamePattern>
+            <!-- 保存30天的日志 -->
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder charset="UTF-8">
+            <!-- 输出日志记录格式 -->
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 第二个文件输出,每天产生一个文件 -->
+    <appender name="FILE2" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${CATALINA_BASE}/bb.%d{yyyyMMdd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder charset="UTF-8">
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 第三个文件输出,每天产生一个文件 -->
+    <appender name="CUSTOM" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover -->
+            <fileNamePattern>${CATALINA_BASE}/custom.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!-- keep 30 days' worth of history -->
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder charset="UTF-8">
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 设置日志输出级别 -->
+    <!--level 先后顺序很重 要从严重的开始写    -->
+    <root level="ERROR">
+        <appender-ref ref="FILE1" />
+    </root>
+    <root level="INFO">
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="FILE2" />
+    </root>
+
+    <!-- 自定义logger -->
+    <logger name="custom" level="INFO">
+        <appender-ref ref="CUSTOM" />
+    </logger>
+</configuration>

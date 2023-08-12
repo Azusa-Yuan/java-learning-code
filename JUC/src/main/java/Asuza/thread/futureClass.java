@@ -36,10 +36,20 @@ public class futureClass {
         Future<Integer> future = executor.submit(new MyCallable(10));
         System.out.println("Result " + future.get());
         executor.shutdown();
+
         // 如果要使用thread 要套一层futureTask
         FutureTask<Integer> futureTask = new FutureTask<>(new MyCallable(20));
         Thread thread = new Thread(futureTask);
         thread.start();
         System.out.println("Result " + futureTask.get());
+
+        CompletableFuture<Integer> completableFuture = CompletableFuture.supplyAsync(() -> {
+            for (int i = 0; i < 100; i++) {
+                System.out.println("i = " + i);
+            }
+            return null;
+        });
+
+        Thread.sleep(2000);
     }
 }

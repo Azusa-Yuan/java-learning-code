@@ -1,6 +1,10 @@
 package Asuza.lambda;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /**
  * @author Azusa-Yuan
@@ -25,6 +29,8 @@ public class example {
         // 方法引用可以使代码更加简洁，易读，并且可以与函数式接口（Functional Interfaces）一起使用。
         res = typeCover(Integer::parseInt);
         System.out.println();
+
+
 
     }
     //public interface Function<T, R> {

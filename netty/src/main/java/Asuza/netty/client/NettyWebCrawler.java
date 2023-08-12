@@ -10,6 +10,13 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.concurrent.Semaphore;
 
+
+/**
+ * @author Azusa-Yuan
+ * @description 使用netty和semaphore实现并发数控制的爬虫客户端
+ * @github <a href="https://github.com/Azusa-Yuan">...</a>
+ * @Copyright Azusa-Yuan
+ */
 public class NettyWebCrawler {
 
     public static void main(String[] args) throws URISyntaxException {
