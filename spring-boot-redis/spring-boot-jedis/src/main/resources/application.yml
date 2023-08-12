@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: spring-boot-jedis
+  data:
+    redis:
+      host: 192.168.241.132
+      port: 30116
+      password: wolfcode123
+      client-type: jedis
+      jedis:
+        pool:
+          enabled: true
+          max-active: 8
+server:
+  port: 8081

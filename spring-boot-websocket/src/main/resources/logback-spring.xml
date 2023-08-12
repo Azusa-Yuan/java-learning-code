@@ -6,6 +6,7 @@
     <!--默认是你的启动工程路径-->
     <!-- 如果使用的是相对路径的话，当部署到tomcat路径下的时候，默认是输出到tomcat的bin目录下。
      "../logs" 的意思是把日志输出到tomcat的logs目录下 -->
+    <!-- 其余可参考https://www.likecs.com/show-306999297.html   -->
     <property name="CATALINA_BASE" value="logs"></property>
 
     <!-- 控制台输出 -->
