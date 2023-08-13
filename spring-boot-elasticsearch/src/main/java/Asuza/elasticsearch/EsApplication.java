@@ -1,8 +1,7 @@
-package asuza;
+package Asuza.elasticsearch;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Configuration;
 
 /**
  * @author Azusa-Yuan
@@ -11,9 +10,8 @@ import org.springframework.context.annotation.Configuration;
  * @Copyright Azusa-Yuan
  */
 @SpringBootApplication
-@Configuration
-public class apiApplication {
+public class EsApplication {
     public static void main(String[] args) {
-        SpringApplication.run(apiApplication.class, args);
+        SpringApplication.run(EsApplication.class, args);
     }
 }
