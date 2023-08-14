@@ -1,5 +1,6 @@
 package com.atguigu.boot3.actuator.controller;
 
+import com.atguigu.boot3.actuator.aspect.MetricsApi;
 import com.atguigu.boot3.actuator.component.MyHahaComponent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,10 +17,10 @@ public class HelloController {
     @Autowired
     MyHahaComponent myHahaComponent;
 
+    @MetricsApi(name = "hello")
     @GetMapping("/hello")
     public String hello(){
         //业务调用
-        myHahaComponent.hello();
-        return "哈哈哈";
+        return "haha";
     }
 }

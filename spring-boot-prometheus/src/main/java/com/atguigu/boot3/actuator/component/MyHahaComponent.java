@@ -13,7 +13,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class MyHahaComponent {
     Counter counter = null;
-
     /**
      * 注入 meterRegistry 来保存和统计所有指标
      * @param meterRegistry

@@ -2,6 +2,8 @@
 教程https://www.yuque.com/leifengyang/springboot3/wsx0br0dalot1pqn
 # 还未完成使用切面监控接口
 
+spring boot metrics监控接口 http://localhost:9999/actuator
+
 ```shell
 #请根据自己的情况修改映射目录
 #安装prometheus:时序数据库
