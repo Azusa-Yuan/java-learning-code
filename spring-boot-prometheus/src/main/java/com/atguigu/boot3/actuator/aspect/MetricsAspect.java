@@ -1,14 +1,13 @@
 package com.atguigu.boot3.actuator.aspect;
-
 import io.micrometer.core.instrument.Counter;
 import io.micrometer.core.instrument.MeterRegistry;
 import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,7 +18,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @author Azusa-Yuan
- * @description 用于监控的切面
+ * @description 用于监控的切面  参考 https://blog.csdn.net/nandao158/article/details/120326987
  * @github <a href="https://github.com/Azusa-Yuan">...</a>
  * @Copyright Azusa-Yuan
  */
@@ -43,8 +42,8 @@ public class MetricsAspect {
         Counter total;
         Counter fail;
         Information(String name){
-            total = registry.counter(name, "total", "count");
-            fail = registry.counter(name, "fail", "count");
+            total = registry.counter(name , "count", "total");
+            fail = registry.counter(name, "count", "fail");
         }
     }
 
@@ -72,6 +71,7 @@ public class MetricsAspect {
      */
     @Around("aopPoint() && @annotation(metricsApi)")
     public Object doRouter(ProceedingJoinPoint  jp, MetricsApi metricsApi) throws Throwable{
+        pc_online_count.incrementAndGet();
         counter_all_total.increment();
         // 计时
         long startTime = System.currentTimeMillis();
@@ -83,6 +83,7 @@ public class MetricsAspect {
         long endTime = System.currentTimeMillis();
         long executionTime = endTime - startTime;
         log.info(totalName + "----" + "执行时间：" + executionTime + "ms");
+        pc_online_count.decrementAndGet();
         // 返回结果
         return result;
     }
@@ -99,5 +100,17 @@ public class MetricsAspect {
         // 获取参数个数  一定程度上防止重载
         long argsNum = joinPoint.getArgs().length;
         return applicationName + "-" + className + "-" + methodName + "(" + argsNum + ")";
+    }
+
+
+    @AfterThrowing(value = "aopPoint()" ,throwing = "exception")
+    public void logTestAfterReturing3(JoinPoint jp, Throwable exception){
+
+        String totalName = getClassMethodName(jp);
+        methodMap.getOrDefault(totalName, new Information(totalName)).fail.increment();
+        // 统计失败数
+        log.info("采集接口访问出错{}",exception.getMessage());
+        log.info("采集接口访问信息报错日志{}",exception.getStackTrace());
+
     }
 }

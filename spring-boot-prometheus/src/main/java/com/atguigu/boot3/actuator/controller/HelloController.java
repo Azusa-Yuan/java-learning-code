@@ -21,6 +21,7 @@ public class HelloController {
     @GetMapping("/hello")
     public String hello(){
         //业务调用
+        // int i = 1/0;
         return "haha";
     }
 }
