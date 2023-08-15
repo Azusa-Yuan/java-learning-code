@@ -9,11 +9,15 @@
 # 目前正在进行的模块
 1. netty
 2. JUC
-3. spring boot 结合Elasticsearch
+3. spring-boot-elasticsearch
 4. Design-Pattern
 5. spring-cloud
 6. spring-webflux
 7. spring-boot-prometheus
+8. spring-boot-mybatis-plus
+# 未来会开的坑
+9. spring-boot-mq
+10. spring-boot-security
 
 
 ##
