@@ -42,6 +42,7 @@ public class DeptController {
         log.info("根据id删除部门:{}",id);
         //调用service删除部门
         long nums = deptService.delete(id);
+        log.info("删除部门成功,受影响行数:{}",nums);
         return Result.success();
     }
 
