@@ -10,7 +10,7 @@
 1. netty
 2. JUC
 3. spring-boot-elasticsearch
-4. Design-Pattern
+4. Design-Pattern 主要来源https://github.com/yangxinle1999/Design-pattern
 5. spring-cloud
 6. spring-webflux
 7. spring-boot-prometheus
