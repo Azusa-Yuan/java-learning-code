@@ -15,8 +15,8 @@
 6. spring-webflux
 7. spring-boot-prometheus
 8. spring-boot-mybatis-plus
+9. spring-boot-mq 新增rocketmq
 # 未来会开的坑
-9. spring-boot-mq
 10. spring-boot-security
 
 
