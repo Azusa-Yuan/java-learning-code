@@ -18,6 +18,7 @@ import java.util.Date;
 
 @RestController
 public class mqController {
+    
     @Resource
     EventPublisher eventPublisher;
 
@@ -25,4 +26,5 @@ public class mqController {
     public void sendMessage(@PathVariable("message")  String message) {
         eventPublisher.publishAsync("test-mq", new BaseEvent<>("2", new Date(), message));
     }
+
 }

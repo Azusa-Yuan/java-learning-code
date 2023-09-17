@@ -75,7 +75,8 @@ public class EventPublisher {
 
             @Override
             public void onException(Throwable var1) {
-                log.error("async onException Throwable={}", var1);
+                // public void error(String msg, Throwable t);
+                log.error("async onException Throwable=", var1);
             }
         });
     }

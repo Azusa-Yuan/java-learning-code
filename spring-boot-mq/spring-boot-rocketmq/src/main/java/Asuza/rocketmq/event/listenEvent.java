@@ -23,4 +23,5 @@ public class listenEvent implements RocketMQListener<BaseEvent<String>> {
         log.info("接收到MQ消息 {}", stringBaseEvent.getData());
         log.info("接收到MQ消息的时间戳 {}", stringBaseEvent.getTimestamp());
     }
+
 }
